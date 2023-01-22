@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
@@ -14,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest
 class StudentRepositoryTest {
 
     @Autowired
@@ -40,7 +43,8 @@ class StudentRepositoryTest {
         //when
         var student =  studentRepository.findByNameAndEmailAddressAndUniversity_Country("Mateusz", "test@test.com", "Poland");
         //then
-        assertEquals("Mateusz", student.isPresent());
+        assertEquals(true, student.isPresent());
+        assertEquals("Mateusz", student.get().getName());
     }
 
     @Test
