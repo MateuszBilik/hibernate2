@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "university")
 @Data
@@ -16,13 +19,22 @@ public class University {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "street")
+    private String street;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @Column(name = "city")
+    private String city;
 
-    @Column(name = "email_address")
-    private String emailAddress;
+    @Column(name = "fee")
+    private Long fee;
+
+    @Column(name = "postal_code")
+    private String postalCode;
+
+    @Column(name = "country")
+    private String country;
+
+    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Student> students = new ArrayList<>();
 
 }

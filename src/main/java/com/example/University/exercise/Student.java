@@ -16,19 +16,17 @@ public class Student {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "street")
-    private String street;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "city")
-    private String city;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    @Column(name = "fee")
-    private Long fee;
+    @Column(name = "email_address")
+    private String emailAddress;
 
-    @Column(name = "postal_code")
-    private String postalCode;
-
-    @Column(name = "country")
-    private String country;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "university_id")
+    private University university;
 
 }
